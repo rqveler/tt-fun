@@ -3,8 +3,10 @@ import { computed } from "mobx";
 
 export default class Player extends User {
   matches;
-  constructor(userDetails) {
+  rank;
+  constructor(userDetails, rank) {
     super(userDetails);
     this.matches = [];
+    this.rank = rank;
   }
 }

@@ -1,38 +1,36 @@
 import { observable, action, computed } from "mobx";
 
 export default class Game {
-  @observable play1Score;
-  @observable play2Score;
+  @observable player1Score;
+  @observable player2Score;
   winningScore;
   constructor(player1Score, player2Score, winningScore = 11) {
-    this.play1Score = player1Score;
-    this.play2Score = player2Score;
+    this.player1Score = player1Score;
+    this.player2Score = player2Score;
     this.winningScore = winningScore;
   }
   @action
   setPlayer1Score(value) {
-    this.play1Score = value;
+    this.player1Score = parseInt(value, 10);
   }
   @action
   setPlayer2Score(value) {
-    this.play2Score = value;
+    this.player2Score = parseInt(value, 10);;
   }
 
   @computed
   get hasScore() {
     return (
-      this.play1Score &&
-      this.play1Score >= 0 &&
-      this.play2Score &&
-      this.play2Score >= 0
+      Number.isInteger(this.player1Score) &&
+      Number.isInteger(this.player2Score) >= 0
     );
   }
 
   @computed
   get winningScoreReached() {
     return (
-      this.play1Score >= this.winningScore ||
-      this.play2Score >= this.winningScore
+      this.player1Score >= this.winningScore ||
+      this.player2Score >= this.winningScore
     );
   }
 
@@ -41,7 +39,7 @@ export default class Game {
     return (
       this.winningScoreReached &&
       this.hasScore &&
-      Math.abs(this.play1Score - this.play2Score) >= 2
+      Math.abs(this.player1Score - this.player2Score) >= 2
     );
   }
 
@@ -50,7 +48,6 @@ export default class Game {
     if (!this.hasWinner) {
       return null;
     }
-
-    return this.play1Score > this.play2Score ? 1 : 2;
+    return this.player1Score > this.player2Score ? 1 : 2;
   }
 }

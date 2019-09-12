@@ -22,10 +22,9 @@ export default class StageView extends React.Component {
       <div>
         <h2>{stage.title}</h2>
         {stage.matches.map((match, index) => (
-          <div>
+          <div key={index}>
             <StageMatch
-              toggleMatchDetails={this.toggleMatchDetails.bind(this, match)}
-              key={index}
+              toggleMatchDetails={this.toggleMatchDetails.bind(this, match)}              
               match={match}
             />
             {this.state.visibleMatch === match && <MatchView store={match} />}
