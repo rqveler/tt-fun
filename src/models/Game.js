@@ -18,6 +18,12 @@ export default class Game {
     this.player2Score = parseInt(value, 10);;
   }
 
+  @action
+  setScore(value1, value2) {
+    this.setPlayer1Score(value1); 
+    this.setPlayer2Score(value2); 
+  }
+
   @computed
   get hasScore() {
     return (

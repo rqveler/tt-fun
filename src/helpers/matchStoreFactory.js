@@ -1,5 +1,5 @@
-import Player from "./models/Player";
-import Match from "./models/Match";
+import Player from "../models/Player";
+import Match from "../models/Match";
 
 const createMatchStore = function(name1, name2) {
   const player1 = new Player({

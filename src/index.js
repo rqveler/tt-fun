@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MatchView from "./components/Match/MatchView";
 import StageView from "./components/Stage/StageView";
-import createMatchStore from "./matchStoreFactory";
+import createMatchStore from "./helpers/matchStoreFactory";
 
 const matchStore = createMatchStore(
   {

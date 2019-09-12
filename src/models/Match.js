@@ -14,11 +14,10 @@ export default class Match {
     this.player1 = player1 || {};
     this.player2 = player2 || {};
     this.games = Array.from({ length: bestOf }, () => new Game());
-  }
+  }  
 
   @computed
-  get winner() {
-    console.log("winner computation!");
+  get winner() {    
     let winner = null;
     const numberOfGames = this.games.length;
     const player1Wins = this.games.filter(g => g.winner === 1).length;
