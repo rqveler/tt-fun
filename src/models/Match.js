@@ -2,7 +2,11 @@ import { observable, computed, action } from "mobx";
 import { Player } from "./Player";
 import Game from "./Game";
 
+const player1Id = 1;
+const player2Id = 2;
+
 export default class Match {
+  id;
   player1;
   player2;
   @observable table;
@@ -11,25 +15,29 @@ export default class Match {
   @observable isVisible;
 
   constructor(player1, player2, bestOf = 5) {
-    this.player1 = player1 || {};
-    this.player2 = player2 || {};
-    this.games = Array.from({ length: bestOf }, () => new Game());
-  }  
+    this.player1 = player1;
+    this.player2 = player2;
+    this.games = Array.from({ length: bestOf }, () => new Game());    
+  } 
+  
+  @action
+  addToPlayers() {
+    this.player1.addMatch(this);
+    this.player1.addMatch(this);
+  }
 
   @computed
-  get winner() {    
-    let winner = null;
-    const numberOfGames = this.games.length;
-    const player1Wins = this.games.filter(g => g.winner === 1).length;
-    if (player1Wins > numberOfGames / 2) {
-      winner = this.player1;
-    } else {
-      const player2Wins = this.games.filter(g => g.winner === 2).length;
-      if (player2Wins > numberOfGames / 2) {
-        winner = this.player2;
-      }
+  get winner() {
+    const winsCount = (player)=> this.games.filter(g => g.winner === player).length; 
+    const wonMostGames = (wins)=> wins >  this.games.length / 2;
+   
+    if (wonMostGames(winsCount(player1Id))) {
+      return this.player1;
+    }     
+    if (wonMostGames(winsCount(player2Id))){  
+      return this.player2;
     }
-    return winner;
+    return null;
   }
 
   @computed

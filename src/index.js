@@ -1,7 +1,6 @@
 import Stage from "./models/Stage";
 import React from "react";
 import ReactDOM from "react-dom";
-import MatchView from "./components/Match/MatchView";
 import StageView from "./components/Stage/StageView";
 import createMatchStore from "./helpers/matchStoreFactory";
 

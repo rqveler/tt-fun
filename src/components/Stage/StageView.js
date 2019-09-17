@@ -27,7 +27,7 @@ export default class StageView extends React.Component {
               toggleMatchDetails={this.toggleMatchDetails.bind(this, match)}              
               match={match}
             />
-            {this.state.visibleMatch === match && <MatchView store={match} />}
+            {this.state.visibleMatch === match && <MatchView matchStore={match} />}
           </div>
         ))}
       </div>

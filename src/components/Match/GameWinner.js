@@ -1,9 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react"
 
- const GameWinner = observer((props) => {
-    console.log("props.winner", props.winner);
-    const winner = props.winner;     
+ const GameWinner = observer((props) => {    
+    const {winner} = props;     
     return (         
         <span>
         {winner && <span>won by {winner.fullName}</span>}   

@@ -4,30 +4,38 @@ export default class Game {
   @observable player1Score;
   @observable player2Score;
   winningScore;
-  constructor(player1Score, player2Score, winningScore = 11) {
-    this.player1Score = player1Score;
-    this.player2Score = player2Score;
+  constructor(player1Score = 0, player2Score = 0, winningScore = 11) {
+    this.setPlayer1Score(player1Score);
+    this.setPlayer2Score(player2Score);
     this.winningScore = winningScore;
   }
   @action
   setPlayer1Score(value) {
-    this.player1Score = parseInt(value, 10);
+    //TODO - refactor (compose)
+    var candidtaeValue = parseInt(value, 10);
+    if (Number.isInteger(candidtaeValue)) {
+      this.player1Score = candidtaeValue;
+    }
   }
   @action
   setPlayer2Score(value) {
-    this.player2Score = parseInt(value, 10);;
+    //TODO - use the composed function after refactor
+    var candidtaeValue = parseInt(value, 10);
+    if (Number.isInteger(candidtaeValue)) {
+      this.player2Score = candidtaeValue;
+    }    
   }
 
   @action
   setScore(value1, value2) {
-    this.setPlayer1Score(value1); 
-    this.setPlayer2Score(value2); 
+    this.setPlayer1Score(value1);
+    this.setPlayer2Score(value2);
   }
 
   @computed
   get hasScore() {
     return (
-      Number.isInteger(this.player1Score) &&
+      Number.isInteger(this.player1Score) >= 0 &&
       Number.isInteger(this.player2Score) >= 0
     );
   }
@@ -42,10 +50,11 @@ export default class Game {
 
   @computed
   get hasWinner() {
+    const LeadByMoreThanOne = () => Math.abs(this.player1Score - this.player2Score) >= 2;
     return (
-      this.winningScoreReached &&
       this.hasScore &&
-      Math.abs(this.player1Score - this.player2Score) >= 2
+      this.winningScoreReached &&
+      LeadByMoreThanOne()
     );
   }
 

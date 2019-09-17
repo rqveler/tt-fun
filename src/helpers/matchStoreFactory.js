@@ -1,7 +1,7 @@
 import Player from "../models/Player";
 import Match from "../models/Match";
 
-const createMatchStore = function(name1, name2) {
+const createMatchStore = function(name1, name2, bestOf=5) {
   const player1 = new Player({
     firstName: name1.fn,
     lastName: name1.ln,
@@ -16,7 +16,7 @@ const createMatchStore = function(name1, name2) {
     phone: "0523333333"
   });
 
-  return new Match(player1, player2);
+  return new Match(player1, player2, bestOf);
 };
 
 export default createMatchStore;
