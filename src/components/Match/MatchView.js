@@ -10,12 +10,12 @@ export default class MatchView extends React.Component {
     super(props);
   }
   render() {
-    const {matchStore} = this.props;
+    const {matchStore, index} = this.props;
     return (
       <div>
-        <MatchHeader matchStore={matchStore} />
-        <MatchGames matchStore={matchStore} />
-        <MatchFooter matchStore={matchStore} />
+        <MatchHeader index={index} matchStore={matchStore} />
+        <MatchGames index={index} data-testid={`MatchGames${index}`} matchStore={matchStore} />
+        <MatchFooter index={index} data-testid={`MatchFooter${index}`} matchStore={matchStore} />
       </div>
     );
   }

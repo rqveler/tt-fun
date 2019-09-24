@@ -24,11 +24,11 @@ export default class StageMatch extends React.Component {
     this.props.toggleMatchDetails();
   }
   render() {
-    const match = this.props.match;
+    const {match, index} = this.props;
     return (
-      <div style={matchBox} onClick={this.toggleMatchDetails}>
-        <div style={playerBox}>{match.player1.fullName}</div>
-        <div style={playerBox}>{match.player2.fullName}</div>
+      <div data-testid={`StageMatch${index}`} style={matchBox} onClick={this.toggleMatchDetails}>
+        <div data-testid={`StageMatchFirstPlayer${index}`} style={playerBox}>{match.player1.name}</div>
+        <div data-testid={`StageMatchFirstPlayer${index}`} style={playerBox}>{match.player2.name}</div>
       </div>
     );
   }

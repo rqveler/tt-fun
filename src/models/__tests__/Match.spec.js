@@ -3,11 +3,13 @@ import { exportAllDeclaration } from "@babel/types";
 
 const player1 = {
     fn: "Avi",
-    ln: "Cohen"
+    ln: "Cohen",
+    phone: "0521234567"
 };
 const player2 = {
     fn: "Benny",
-    ln: "Levi"
+    ln: "Levi",
+    phone: "0521234568"
 };
 
 let matchStore;

@@ -1,12 +1,18 @@
 import { observable, action, computed } from "mobx";
 
 export default class Game {
-  @observable player1Score;
-  @observable player2Score;
+  player1 = observable({
+    score: 0,
+    id: undefined
+  });
+  player2 = observable({
+    score: 0,
+    id: undefined
+  });
   winningScore;
-  constructor(player1Score = 0, player2Score = 0, winningScore = 11) {
-    this.setPlayer1Score(player1Score);
-    this.setPlayer2Score(player2Score);
+  constructor(player1, player2, winningScore = 11) {
+    this.player1.id=player1;
+    this.player2.id=player2;
     this.winningScore = winningScore;
   }
   @action
@@ -14,7 +20,7 @@ export default class Game {
     //TODO - refactor (compose)
     var candidtaeValue = parseInt(value, 10);
     if (Number.isInteger(candidtaeValue)) {
-      this.player1Score = candidtaeValue;
+      this.player1.score = candidtaeValue;
     }
   }
   @action
@@ -22,7 +28,7 @@ export default class Game {
     //TODO - use the composed function after refactor
     var candidtaeValue = parseInt(value, 10);
     if (Number.isInteger(candidtaeValue)) {
-      this.player2Score = candidtaeValue;
+      this.player2.score = candidtaeValue;
     }    
   }
 
@@ -35,22 +41,22 @@ export default class Game {
   @computed
   get hasScore() {
     return (
-      Number.isInteger(this.player1Score) >= 0 &&
-      Number.isInteger(this.player2Score) >= 0
+      Number.isInteger(this.player1.score) >= 0 &&
+      Number.isInteger(this.player2.score) >= 0
     );
   }
 
   @computed
   get winningScoreReached() {
     return (
-      this.player1Score >= this.winningScore ||
-      this.player2Score >= this.winningScore
+      this.player1.score >= this.winningScore ||
+      this.player2.score >= this.winningScore
     );
   }
 
   @computed
   get hasWinner() {
-    const LeadByMoreThanOne = () => Math.abs(this.player1Score - this.player2Score) >= 2;
+    const LeadByMoreThanOne = () => Math.abs(this.player1.score - this.player2.score) >= 2;
     return (
       this.hasScore &&
       this.winningScoreReached &&
@@ -59,10 +65,10 @@ export default class Game {
   }
 
   @computed
-  get winner() {
+  get winnerId() {
     if (!this.hasWinner) {
       return null;
     }
-    return this.player1Score > this.player2Score ? 1 : 2;
+    return this.player1.score > this.player2.score ? this.player1.id : this.player2.id;
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import MatchGame from "./MatchGame";
 import GameWinner from "./GameWinner"
+import players from "../../repos/players"
 
 @observer
 export default class MatchGames extends React.Component {
@@ -12,12 +13,12 @@ export default class MatchGames extends React.Component {
   render() {
     const {matchStore}=this.props;
     return (
-      <div>
+      <div data-testid="MatchGames">
         <ul>
           {matchStore.games.map((game, index) => (
             <li key={index}>          
               <MatchGame game={game} index={index} />
-              <GameWinner winner={game.winner && matchStore["player"+game.winner]} />             
+              <GameWinner index={index} winner={game.winnerId && players.getName[game.winnerId]} />             
             </li>
           ))}
         </ul>

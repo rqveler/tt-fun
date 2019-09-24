@@ -22,9 +22,10 @@ export default class MatchGames extends React.Component {
     const { game } = this.props;
     const { index } = this.props;
     return (
-      <span>
+      <span data-testid={`MatchGame${index}`}>
         <span>Game {index + 1}</span>
         <input
+          data-testid={`FirstPlayer${index}`}
           onChange={this.setPlayer1Score.bind(this)}
           type="number"
           style={scoreStyle}
@@ -32,6 +33,7 @@ export default class MatchGames extends React.Component {
         />
         <b>:</b>
         <input
+          data-testid={`SecondPlayer${index}`}
           onChange={this.setPlayer2Score.bind(this)}
           type="number"
           style={scoreStyle}

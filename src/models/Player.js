@@ -1,23 +1,19 @@
 import User from "./User";
-import { action } from "mobx";
+import { action, observable } from "mobx";
 
-export default class Player extends User {  
+export default class Player extends User {
   rank;
+  @observable
   paymentCovered = false;
+  id;  
   constructor(userDetails, rank) {
-    super(userDetails);
-    this.matches = [];
-    this.rank = rank;
-  }
-
-  @action
-  addMatch(match) {
-    this.matches.push(match);    
+    super(userDetails);   
+    this.rank = rank;         
   }
 
   @action
   coverPayment() {
-    this.paymentCovered = true;    
+    this.paymentCovered = true;
   }
 
 }

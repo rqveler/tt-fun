@@ -7,41 +7,49 @@ import createMatchStore from "./helpers/matchStoreFactory";
 const matchStore = createMatchStore(
   {
     fn: "Avi",
-    ln: "Cohen"
+    ln: "Cohen",
+    phone:"0521234561"
   },
   {
     fn: "Benny",
-    ln: "Levi"
+    ln: "Levi",
+    phone:"0521234562"
   }
 );
 const matchStore2 = createMatchStore(
   {
     fn: "Yossi",
-    ln: "Levi"
+    ln: "Levi",
+    phone:"0521234563"
   },
   {
     fn: "Eli",
-    ln: "Mizrachy"
+    ln: "Mizrachy",
+    phone:"0521234564"
   }
 );
 const matchStore3 = createMatchStore(
   {
     fn: "Chai",
-    ln: "Chemed"
+    ln: "Chemed",
+    phone:"0521234565"
   },
   {
     fn: "oded",
-    ln: "Machnes"
+    ln: "Machnes",
+    phone:"0521234566"
   }
 );
 const matchStore4 = createMatchStore(
   {
     fn: "Nir",
-    ln: "Baram"
+    ln: "Baram",
+    phone:"0521234567"
   },
   {
     fn: "Eshhar",
-    ln: "Weiss"
+    ln: "Weiss",
+    phone:"0521234568"
   }
 );
 const stageStore = new Stage("firstStage", 4);

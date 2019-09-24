@@ -1,8 +1,6 @@
-import { observable, computed } from "mobx";
-
 export default class User {
-  @observable firstName;
-  @observable lastName;
+  firstName;
+  lastName;
   email;
   phone;
   id;
@@ -14,8 +12,7 @@ export default class User {
     this.phone = phone;
     this.id = phone;
   }
-
-  @computed
+  
   get fullName() {
     return this.firstName + " " + this.lastName;
   }
