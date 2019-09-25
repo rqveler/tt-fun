@@ -12,13 +12,14 @@ export default class MatchGames extends React.Component {
 
   render() {
     const {matchStore}=this.props;
+    
     return (
       <div data-testid="MatchGames">
         <ul>
           {matchStore.games.map((game, index) => (
             <li key={index}>          
               <MatchGame game={game} index={index} />
-              <GameWinner index={index} winner={game.winnerId && players.getName[game.winnerId]} />             
+              <GameWinner index={index} winnerName={game.winnerId && players.getName(game.winnerId)} />             
             </li>
           ))}
         </ul>
